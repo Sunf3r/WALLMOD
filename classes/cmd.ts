@@ -48,14 +48,19 @@ export default class Cmd {
 		this.params = params!
 
 		if (cmds[name as 'ping']) {
-			const handler = (req: Request) => {
-				if (req.headers.has('setup')) return this.setup()
+			Deno.serve({ port: cmds[name as 'ping'] }, this.handler)
+		}
+	}
 
-				const ctx = parseHeaders(req.headers) as CmdCtx
-				return this.run!(ctx)
-			}
+	public handler(req: Request) {
+		if (req.headers.has('setup')) return this.setup()
 
-			Deno.serve({ port: cmds[name as 'ping'] }, handler)
+		const ctx = parseHeaders(req.headers) as CmdCtx
+
+		try {
+			return this.run!(ctx)
+		} catch (e: any) {
+			return new Response(e.stack, { status: 500 })
 		}
 	}
 
