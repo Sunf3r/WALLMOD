@@ -48,7 +48,7 @@ export default class Collection<K, V> extends Map {
 	}
 
 	// Filter: same as Array#filter
-	filter(func: (item: V) => bool): V[] {
+	filter(func: (item: V) => any): V[] {
 		const res = []
 
 		for (const item of this.values()) {
@@ -59,7 +59,7 @@ export default class Collection<K, V> extends Map {
 	}
 
 	// Find: same as Array#find
-	find(func: (item: V) => bool): V | undefined {
+	find(func: (item: V) => any): V | undefined {
 		for (const item of this.values()) {
 			if (func(item)) return item
 		}
@@ -97,7 +97,7 @@ export default class Collection<K, V> extends Map {
 	}
 
 	// Some: Returns true if some item passes in the function
-	some(func: (item: V) => bool): bool {
+	some(func: (item: V) => any): bool {
 		for (const item of this.values()) {
 			if (func(item)) return true
 		}
