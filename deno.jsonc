@@ -9,6 +9,7 @@
 	"imports": { // DENO Import map
 		// Folders map
 		"util/": "./util/",
+		"core/": "./core/",
 		"types/": "./types/",
 		"cmds/": "./commands/",
 		"events/": "./events/",
@@ -19,7 +20,8 @@
 		"ports": "./ports.ts",
 
 		// Libraries map
-		"baileys": "npm:@whiskeysockets/baileys"
+		"baileys": "npm:@whiskeysockets/baileys",
+		"luxon": "https://moment.github.io/luxon/es6/luxon.min.js"
 	},
 	"lint": { // DENO Lint settings
 		"rules": {

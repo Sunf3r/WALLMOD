@@ -4,6 +4,11 @@ let url = `http://localhost:${port}`
 
 export { port, url }
 
-export const cmds = {
-	ping: port + 1,
+export const eventPorts = {
+	'messages.upsert': port++,
+}
+
+export const cmdPorts = {
+	'ping': port++,
+	'help': port++,
 }
