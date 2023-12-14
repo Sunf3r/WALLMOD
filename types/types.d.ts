@@ -1,4 +1,6 @@
 import { proto } from 'baileys'
+import User from 'classes/user.ts'
+import Cmd from 'classes/cmd.ts'
 
 type MsgTypes =
 	| 'text'
@@ -22,4 +24,13 @@ interface Msg {
 	isBot: bool
 	quoted: Msg
 	raw: proto.IWebMessageInfo
+}
+
+interface CmdCtx {
+	msg: Msg
+	user: User
+	// group: Group | undefined
+	args: str[]
+	cmd: Cmd
+	sendUsage(): Promise<void>
 }
