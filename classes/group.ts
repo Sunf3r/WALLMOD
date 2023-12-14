@@ -1,8 +1,8 @@
 import { GroupMetadata, type GroupParticipant, type proto } from 'baileys'
-import db from 'json/db.json' assert { type: 'json' }
+import db from 'settings/db.json' assert { type: 'json' }
 import Collection from 'util/collection.ts'
 import type { Msg } from 'types/types.d.ts'
-import prisma from 'prisma'
+import prisma from 'util/prisma.ts'
 
 // I commented out some properties in this class bc
 // I don't need them, so there's no reason for them to be cached

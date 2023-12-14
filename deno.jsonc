@@ -9,15 +9,14 @@
 	"imports": { // DENO Import map
 		// Folders map
 		"util/": "./util/",
-		"json/": "./json/",
 		"types/": "./types/",
 		"cmds/": "./commands/",
 		"events/": "./events/",
 		"classes/": "./classes/",
+		"settings/": "./settings/",
 
 		// Files map
 		"ports": "./ports.ts",
-		"prisma": "./prisma/prisma.ts",
 
 		// Libraries map
 		"baileys": "npm:@whiskeysockets/baileys"
