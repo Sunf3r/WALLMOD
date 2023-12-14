@@ -1,4 +1,4 @@
-import { request } from './util/request.ts'
+import { request } from 'util/request.ts'
 
 const req = await request('http://localhost:3000', {
 	id: 'jsdjkfsd',

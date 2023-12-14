@@ -1,4 +1,4 @@
-# ⭐  WALL-E 🤖  ⭐
+# ⭐ WALL-E 🤖 ⭐
 
 ### ✨ WALL-E is a WhatsApp chat bot with some cool features. ✨
 
@@ -27,7 +27,7 @@
 
 - [🦕 DENO 🦕](https://deno.com/)
 
-> 🪧 » _Recommended version: 1.38 or higher_
+> 🪧 » _Recommended version: 1.39 or higher_
 
 - [💩 NodeJS 💩](https://nodejs.org/pt-br/)
 
