@@ -1,17 +1,18 @@
 {
-	"fmt": {
+	"fmt": { // DENO Formatter settings
 		"indentWidth": 4,
 		"singleQuote": true,
 		"useTabs": true,
 		"semiColons": false,
 		"lineWidth": 100
 	},
-	"imports": {
+	"imports": { // DENO Import map
 		// Folders map
 		"util/": "./util/",
+		"json/": "./json/",
 		"types/": "./types/",
-		"events/": "./events/",
 		"cmds/": "./commands/",
+		"events/": "./events/",
 		"classes/": "./classes/",
 
 		// Files map
@@ -21,10 +22,10 @@
 		// Libraries map
 		"baileys": "npm:@whiskeysockets/baileys"
 	},
-	"lint": {
+	"lint": { // DENO Lint settings
 		"rules": {
 			"exclude": ["no-explicit-any"]
 		}
 	},
-	"unstable": ["byonm"]
+	"unstable": ["byonm"] // DENO unstable features
 }

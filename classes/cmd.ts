@@ -3,7 +3,7 @@ import type { Msg } from 'types/types.d.ts'
 import { AnyMessageContent } from 'baileys'
 import { cmds, url } from 'ports'
 
-export default abstract class Cmd {
+export default class Cmd {
 	name: str
 	aliases: str[]
 	cooldown: num // in secs
@@ -18,6 +18,8 @@ export default abstract class Cmd {
 		sendMedia?: num // How many media msgs can this cmd send?
 	}
 	params: cmdParams[]
+
+	run?(ctx: Headers): Promise<Response>
 
 	constructor({ access, aliases, cooldown, permissions, params, name }: Partial<Cmd>) {
 		this.name = name as 'ping'
@@ -38,13 +40,11 @@ export default abstract class Cmd {
 
 		if (cmds[name as 'ping']) {
 			const handler = (req: Request) =>
-				req.headers.has('setup') ? this.setup() : this.run(req.headers)
+				req.headers.has('setup') ? this.setup() : this.run!(req.headers)
 
 			Deno.serve({ port: cmds[name as 'ping'] }, handler)
 		}
 	}
-
-	public abstract run(ctx: Headers): Promise<Response>
 
 	public setup() {
 		const headers = getHeaders({

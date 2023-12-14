@@ -1,20 +1,16 @@
 import Cmd from 'classes/cmd.ts'
 
-class Ping extends Cmd {
-	constructor() {
-		super({
-			name: 'ping',
-			aliases: ['p'],
-			permissions: {
-				sendTxt: 1,
-				react: 2,
-			},
-			params: ['user', 'msg'],
-		})
-	}
+new Cmd({
+	name: 'ping',
+	aliases: ['p'],
+	permissions: {
+		sendTxt: 1,
+		react: 2,
+	},
+	params: ['user', 'msg'],
+}).run = async function (ctx) {
+	// let msgDelay = Date.now()
+	// await this.send()
 
-	async run() {
-		await JSON
-		return new Response(null, { status: 200 })
-	}
+	return new Response(null, { status: 200 })
 }
