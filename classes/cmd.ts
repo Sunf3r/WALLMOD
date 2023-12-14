@@ -1,6 +1,6 @@
+import { getHeaders, parseHeaders, request } from 'util/request.ts'
 import type { AnyMessageContent, proto } from 'baileys'
-import { getHeaders, request } from 'util/request.ts'
-import type { Msg } from 'types/types.d.ts'
+import type { CmdCtx, Msg } from 'types/types.d.ts'
 import { cmds, url } from 'ports'
 
 export default class Cmd {
@@ -19,7 +19,7 @@ export default class Cmd {
 	}
 	params: cmdParams[] // Cmd will only receive params with these names from the main
 
-	run?(ctx: Headers): Promise<Response> // Pretend this is an abstract function
+	run?(ctx: CmdCtx): Promise<Response> // Pretend this is an abstract function
 
 	constructor({ access, aliases, cooldown, permissions, params, name }: Partial<Cmd>) {
 		this.name = name as 'ping'
@@ -48,8 +48,12 @@ export default class Cmd {
 		this.params = params!
 
 		if (cmds[name as 'ping']) {
-			const handler = (req: Request) =>
-				req.headers.has('setup') ? this.setup() : this.run!(req.headers)
+			const handler = (req: Request) => {
+				if (req.headers.has('setup')) return this.setup()
+
+				const ctx = parseHeaders(req.headers) as CmdCtx
+				return this.run!(ctx)
+			}
 
 			Deno.serve({ port: cmds[name as 'ping'] }, handler)
 		}

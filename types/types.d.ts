@@ -1,6 +1,7 @@
-import { proto } from 'baileys'
-import User from 'classes/user.ts'
-import Cmd from 'classes/cmd.ts'
+import type Group from 'classes/group.ts'
+import type User from 'classes/user.ts'
+import type Cmd from 'classes/cmd.ts'
+import type { proto } from 'baileys'
 
 type MsgTypes =
 	| 'text'
@@ -29,7 +30,7 @@ interface Msg {
 interface CmdCtx {
 	msg: Msg
 	user: User
-	// group: Group | undefined
+	group: Group | undefined
 	args: str[]
 	cmd: Cmd
 	sendUsage(): Promise<void>
