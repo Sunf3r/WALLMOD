@@ -1,7 +1,6 @@
-import { getHeaders, parseHeaders, request } from 'util/request.ts'
-import type { AnyMessageContent, proto } from 'baileys'
-import type { CmdCtx, Msg } from 'types/types.d.ts'
-import { cmds, url } from 'ports'
+import { getHeaders, parseHeaders } from 'util/request.ts'
+import type { CmdCtx } from 'types/types.d.ts'
+import { cmds } from 'ports'
 
 export default class Cmd {
 	name: str
@@ -75,43 +74,5 @@ export default class Cmd {
 		})
 
 		return new Response(null, { headers, status: 200 })
-	}
-
-	// Send a message to a chat
-	public async send(id: str | Msg, body: str | AnyMessageContent) {
-		return await request(url + '/send', {
-			id,
-			body,
-		})
-	}
-
-	// React on a msg
-	public async react(msg: Msg, emoji: str) {
-		return await request(url + '/react', {
-			msg,
-			emoji,
-		})
-	}
-
-	// Edit a msg send by the bot
-	public async editMsg(msg: Msg, newText: str) {
-		return await request(url + '/edit', {
-			msg,
-			newText,
-		})
-	}
-
-	// Delete a msg *for everyone*
-	public async deleteMsg(msgOrKey: Msg | proto.IMessageKey) {
-		return await request(url + '/delete', {
-			msgOrKey,
-		})
-	}
-
-	// Download the media from a msg
-	public async downloadMedia(msg: Msg) {
-		return await request(url + '/downloadMedia', {
-			msg,
-		})
 	}
 }

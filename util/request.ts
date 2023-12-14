@@ -24,6 +24,7 @@ function getHeaders(data: any) {
 	})
 }
 
+// parseHeaders: parse JSON stringified headers
 function parseHeaders(headers: Headers) {
 	const newObj = {}
 
