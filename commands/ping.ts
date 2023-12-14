@@ -1,4 +1,4 @@
-import Cmd from '../classes/cmd.ts'
+import Cmd from 'classes/cmd.ts'
 
 class Ping extends Cmd {
 	constructor() {

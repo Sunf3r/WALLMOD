@@ -1,4 +1,4 @@
-import { proto } from 'baileys';
+import { proto } from 'baileys'
 
 type MsgTypes =
 	| 'text'
@@ -10,16 +10,16 @@ type MsgTypes =
 	| 'audio'
 	| 'protocol'
 	| 'reaction'
-	| 'location';
-    
+	| 'location'
+
 interface Msg {
-	key: proto.IMessageKey;
-	chat: str;
-	edited: bool;
-	text: str;
-	type: MsgTypes;
-	isMedia: bool;
-	isBot: bool;
-	quoted: Msg;
-	raw: proto.IWebMessageInfo;
+	key: proto.IMessageKey
+	chat: str
+	edited: bool
+	text: str
+	type: MsgTypes
+	isMedia: bool
+	isBot: bool
+	quoted: Msg
+	raw: proto.IWebMessageInfo
 }

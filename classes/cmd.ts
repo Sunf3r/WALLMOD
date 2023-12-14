@@ -1,5 +1,5 @@
-import { getHeaders, request } from '../util/request.ts'
-import type { Msg } from '../types/types.d.ts'
+import { getHeaders, request } from 'util/request.ts'
+import type { Msg } from 'types/types.d.ts'
 import { AnyMessageContent } from 'baileys'
 import { cmds, url } from 'ports'
 
@@ -45,7 +45,7 @@ export default abstract class Cmd {
 	}
 
 	public abstract run(ctx: Headers): Promise<Response>
-	
+
 	public setup() {
 		const headers = getHeaders({
 			name: this.name,
