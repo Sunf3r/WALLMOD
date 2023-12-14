@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"postinstall": "rm package-lock.json"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.7.0",
+		"baileys": "github:whiskeysockets/baileys",
+		"express": "^4.18.2"
+	}
+}

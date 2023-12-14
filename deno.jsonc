@@ -1,0 +1,25 @@
+{
+	"fmt": {
+		"indentWidth": 4,
+		"singleQuote": true,
+		"useTabs": true,
+		"semiColons": false,
+		"lineWidth": 100
+	},
+	"imports": {
+		"util": "./util/",
+		"types": "./types/",
+		"events": "./events/",
+		"cmds": "./commands/",
+		"ports": "./ports.ts",
+		"classes": "./classes/",
+		"prisma": "./prisma/prisma.ts",
+		"baileys": "npm:@whiskeysockets/baileys"
+	},
+	"lint": {
+		"rules": {
+			"exclude": ["no-explicit-any"]
+		}
+	},
+	"unstable": ["byonm"]
+}
