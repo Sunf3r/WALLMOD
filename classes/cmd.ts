@@ -1,6 +1,6 @@
 import { getHeaders, parseHeaders } from 'util/request.ts'
 import type { CmdCtx } from 'types/types.d.ts'
-import { cmds } from 'ports'
+import { cmdPorts } from 'ports'
 
 export default class Cmd {
 	name: str
@@ -46,8 +46,8 @@ export default class Cmd {
 
 		this.params = params!
 
-		if (cmds[name as 'ping']) {
-			Deno.serve({ port: cmds[name as 'ping'] }, this.handler)
+		if (cmdPorts[name as 'ping']) {
+			Deno.serve({ port: cmdPorts[name as 'ping'] }, this.handler.bind(this))
 		}
 	}
 

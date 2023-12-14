@@ -1,7 +1,8 @@
 {
 	"userDefaults": {
 		"prefix": ".",
-		"language": "pt"
+		"language": "pt",
+		"cacheLimit": 500
 	},
 	"groupDefaults": {
 		"msgsCacheLimit": 200

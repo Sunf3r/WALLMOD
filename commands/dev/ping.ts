@@ -1,9 +1,10 @@
+import { react, send } from 'util/interaction.ts'
 import prisma from 'util/prisma.ts'
 import Cmd from 'classes/cmd.ts'
 
 new Cmd({
 	name: 'ping',
-	aliases: ['p'],
+	aliases: ['p', 'pong'],
 	permissions: {
 		sendTxt: 1,
 		react: 2,
@@ -12,7 +13,7 @@ new Cmd({
 }).run = async function ({ msg, user }) {
 	// Calculate the WhatsApp API delay by reacting on tha user msg
 	let apiDelay = Date.now()
-	await this.react(msg, 'hourglass')
+	await react(msg, 'hourglass')
 	apiDelay = Date.now() - apiDelay
 
 	// Calculate the db delay by searching the user id in it
@@ -24,7 +25,7 @@ new Cmd({
 	})
 	dbDelay = Date.now() - dbDelay
 
-	this.send(msg, `*Ping!* :penguin:/nWA API: ${apiDelay}ms/nPostgreSQL: ${dbDelay}`)
+	send(msg, `*Ping!* :penguin:/nWA API: ${apiDelay}ms/nPostgreSQL: ${dbDelay}`)
 
 	return new Response(null, { status: 200 })
 }
