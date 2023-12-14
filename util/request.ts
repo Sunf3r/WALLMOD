@@ -31,7 +31,7 @@ function parseHeaders(headers: Headers) {
 	for (const [key, value] of headers.entries()) {
 		try {
 			//@ts-ignore 'newObj' does not have a type yet
-			newObj[key] = value.includes('{') ? JSON.parse(value) : value
+			newObj[key] = value.startsWith('{') || value.startsWith('[') ? JSON.parse(value) : value
 		} catch (_e) {
 			//@ts-ignore 'newObj' does not have a type yet
 			newObj[key] = value

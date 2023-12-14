@@ -33,5 +33,5 @@ interface CmdCtx {
 	group: Group | undefined
 	args: str[]
 	cmd: Cmd
-	sendUsage(): Promise<void>
+	sendUsage(): void
 }
