@@ -1,6 +1,6 @@
 # Settings
 *.env
-auth*
+**/auth*
 
 # Builds
 node_modules/
