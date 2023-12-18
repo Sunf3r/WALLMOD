@@ -34,18 +34,21 @@ async function getCtx(raw: proto.IWebMessageInfo) {
 	return {
 		msg: {
 			key,
-			chat: key?.remoteJid!, // msg chat id
+			chat: key?.remoteJid!,
+			// msg chat id
 			type,
 			text: getMsgText(message!),
-			edited: Object.keys(message!)[0] === 'editedMessage', // if the msg is edited
-			isBot: key.fromMe && !key.participant,
+			edited: Object.keys(message!)[0] === 'editedMessage',
+			// if the msg is edited
+			fromBaileys: key.fromMe && !key.participant,
+			// if the msg was sent by Baileys
 			isMedia: isMedia(type),
 			quoted: getQuoted(raw), // quoted msg
 			raw, // raw msg obj
 		},
 		user,
 		group: group!,
-	} as CmdCtx
+	} as CmdCtx // the only one context you need.
 }
 
 // getMsgType: Get the type of a raw message
@@ -56,6 +59,7 @@ function getMsgType(m: proto.IMessage): MsgTypes {
 		if (res) return String(newType).trim() as MsgTypes
 	}
 
+	console.log(Object.keys(m!)[0])
 	return Object.keys(m!)[0] as MsgTypes
 }
 
@@ -95,10 +99,8 @@ function getMsgText(m: proto.IMessage) {
 
 // getQuoted: get the quoted msg of a raw msg
 function getQuoted(raw: proto.IWebMessageInfo) {
-	const m = raw.message!
-
-	//@ts-ignore 'quotedMessage' is missing on lib types
-	const quotedRaw = findKey(m, 'quotedMessage')
+	//@ts-ignore 'quotedMessage' is missing on Baileys types
+	const quotedRaw = findKey(raw.message!, 'quotedMessage')
 
 	if (!quotedRaw) return
 

@@ -27,21 +27,25 @@ new Event('messages.upsert')
 			const { msg, group, user } = await getCtx(m)
 
 			if (group?.id && coolMsgValues.includes(msg.type)) {
-				group.cacheMsg(msg) // only msg keys are cached (used for 'clean' cmd)
-				if (!msg.isBot) group.countMsg(user.id)
+				group.cacheMsg(msg)
+				// only msg keys are cached (used for 'clean' cmd)
+
+				if (!msg.fromBaileys) group.countMsg(user.id)
+				// add +1 msg to user's counter
 			}
 
 			if (!msg.text.startsWith(user.prefix)) continue
 
+			// args = array with all after-prefix words splitted by spaces
 			let args: str[] = msg.text.replace(user.prefix, '').trim().split(' ')
 
-			// supposedCmd: It's the word between the prefix and the args
+			// supposedCmd: It's the first word between prefix and args
 			const supposedCmd = args.shift()!.toLowerCase()!
 
 			// search cmd by name or by alias
 			const cmd = cmds.find((c) => c.name === supposedCmd || c.aliases.includes(supposedCmd))
 
-			if (!cmd) continue
+			if (!cmd) continue // Skip this msg and go to the next
 
 			if (cmd.access.onlyDevs && !settings.botOwners.includes(user.id)) {
 				// don't allow random guys run onlyDevs cmds
@@ -52,7 +56,7 @@ new Event('messages.upsert')
 			// Remember, son. You DO the multiplication FIRST
 			const cdTime = user.lastCmd.time + cmd.cooldown * 1_000 - Date.now()
 			if (cdTime > 699) {
-				const time = Duration
+				const time = Duration // Format timestamp
 					.fromMillis(cdTime)
 					.rescale()
 					.shiftTo('seconds')
@@ -62,10 +66,13 @@ new Event('messages.upsert')
 				continue
 			}
 
-			user.addCmd()
+			user.addCmd() // Count 1+ cmd
+			// if you didn't understand, there are two counter types:
+			// user sent msgs (scope: group) = How many msgs this user sent to a group
+			// user cmds (scope: user) = How many cmds did this user use
 
 			try {
-				// start typing (expires after about 10 seconds.)
+				// start typing in this chat (expires after about 10 seconds.)
 				updatePresence(msg.chat, 'composing')
 
 				request(`http://localhost:${cmdPorts[cmd.name as 'ping']}`, {
@@ -75,21 +82,24 @@ new Event('messages.upsert')
 					user,
 					cmd,
 					msg,
-				}) // the only one context you need.
+				})
 			} catch (e: any) {
 				send(msg, `[:alert:] ${e?.message || e}`)
 
+				// GAY PANICCCCCC
 				react(msg, 'x')
 			}
 
 			// deno-lint-ignore no-inner-declarations
 			function sendUsage() {
+				// this func is called when the user provides wrong args for a cmd
 				args = [cmd!.name]
 
 				request(`http://localhost:${cmdPorts['help']}`, {
 					args,
 					msg,
 				})
+				// Then, send their the help menu
 				react(msg, 'think')
 				return
 			}

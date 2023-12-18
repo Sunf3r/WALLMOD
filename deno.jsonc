@@ -23,7 +23,7 @@
 		"baileys": "npm:@whiskeysockets/baileys",
 		"luxon": "https://moment.github.io/luxon/es6/luxon.min.js"
 	},
-	"lint": { // DENO Lint settings
+	"lint": { // DENO Lint rules
 		"rules": {
 			"exclude": ["no-explicit-any"]
 		}

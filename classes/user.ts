@@ -7,11 +7,12 @@ export default class User {
 	_userPrefix: str
 	_userLanguage: str
 	lastCmd: {
-		time: num
-		botResponse: str
+		time: num // last cmd timestamp
+		botResponse: str // bot's response ID
 	}
 
 	constructor(public id: str, username: str) {
+		// Format ID to phone number
 		this.id = id.split('@')[0].split(':')[0]
 		this.lastCmd = {
 			time: 0,
@@ -24,16 +25,19 @@ export default class User {
 		this._userLanguage = db.userDefaults.language
 	}
 
+	// Each property has a getter/setter, but how does it works?
+	// when you call user.name, will receive this._username
 	public get name() {
 		return this._username
 	}
 
+	// when you set user.name = 'random user name', will update cache & DB
 	public set name(value: str) {
 		this._username = value
 
 		prisma.users.update({
 			where: { id: this.id },
-			data: { name: value },
+			data: { name: value }, // update user name
 		})
 	}
 
@@ -46,7 +50,7 @@ export default class User {
 
 		prisma.users.update({
 			where: { id: this.id },
-			data: { lang: value },
+			data: { lang: value }, // update user language
 		})
 	}
 
@@ -59,7 +63,7 @@ export default class User {
 
 		prisma.users.update({
 			where: { id: this.id },
-			data: { prefix: value },
+			data: { prefix: value }, // update user prefix
 		})
 	}
 
@@ -68,23 +72,23 @@ export default class User {
 	}
 
 	async addCmd() {
-		this.lastCmd = {
+		this.lastCmd = { // set last cmd data
 			time: Date.now(),
 			botResponse: this.lastCmd.botResponse || '',
 		}
-		this._cmdsCount++
+		this._cmdsCount++ // Count +1 cmd
 
 		await prisma.users.update({
 			where: { id: this.id },
 			data: {
-				cmds: { increment: 1 },
+				cmds: { increment: 1 }, // update user cmds count
 			},
 		})
 	}
 
 	async checkData() {
 		let data = await prisma.users.findUnique({
-			where: { id: this.id },
+			where: { id: this.id }, // find user data
 		})
 
 		if (!data) {
@@ -100,7 +104,7 @@ export default class User {
 		}
 
 		if (this._username && data.name !== this._username) {
-			data = await prisma.users.update({
+			data = await prisma.users.update({ // 'sync' usernames
 				where: { id: this.id },
 				data: { name: this._username },
 			})

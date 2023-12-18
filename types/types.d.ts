@@ -3,7 +3,7 @@ import type User from 'classes/user.ts'
 import type Cmd from 'classes/cmd.ts'
 import type { proto } from 'baileys'
 
-type MsgTypes =
+type MsgTypes = // refined msg types
 	| 'text'
 	| 'image'
 	| 'sticker'
@@ -15,14 +15,14 @@ type MsgTypes =
 	| 'reaction'
 	| 'location'
 
-interface Msg {
+interface Msg { // abstract msg obj type
 	key: proto.IMessageKey
 	chat: str
 	edited: bool
 	text: str
 	type: MsgTypes
 	isMedia: bool
-	isBot: bool
+	fromBaileys: bool
 	quoted: Msg
 	raw: proto.IWebMessageInfo
 }

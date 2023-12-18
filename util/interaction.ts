@@ -22,7 +22,7 @@ async function react(msg: Msg, emoji: str) {
 	})
 }
 
-// Edit a msg send by the bot
+// Edit a msg sent by the bot
 async function editMsg(msg: Msg, newText: str) {
 	return await request(url + '/edit', {
 		msg,
@@ -51,6 +51,7 @@ async function getGroup(id: str): Promise<Group> {
 	return await req.json()
 }
 
+// update bot presence for a chat
 async function updatePresence(chat: str, status: str) {
 	return await request(url + '/presence', {
 		chat,

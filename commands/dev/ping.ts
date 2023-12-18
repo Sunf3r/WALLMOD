@@ -11,7 +11,7 @@ new Cmd({
 	},
 	params: ['user', 'msg'],
 }).run = async function ({ msg, user }) {
-	// Calculate the WhatsApp API delay by reacting on tha user msg
+	// Calculate the WhatsApp API delay by reacting on the user msg
 	let apiDelay = Date.now()
 	await react(msg, 'hourglass')
 	apiDelay = Date.now() - apiDelay

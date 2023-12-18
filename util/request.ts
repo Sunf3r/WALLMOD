@@ -26,17 +26,17 @@ function getHeaders(data: any) {
 
 // parseHeaders: parse JSON stringified headers
 function parseHeaders(headers: Headers) {
-	const newObj = {}
+	// const newObj = {}
 
-	for (const [key, value] of headers.entries()) {
-		try {
-			//@ts-ignore 'newObj' does not have a type yet
-			newObj[key] = value.startsWith('{') || value.startsWith('[') ? JSON.parse(value) : value
-		} catch (_e) {
-			//@ts-ignore 'newObj' does not have a type yet
-			newObj[key] = value
-		}
-	}
+	// for (const [key, value] of headers.entries()) {
+	// 	try {
+	// 		//@ts-ignore 'newObj' does not have a type yet
+	// 		newObj[key] = value.startsWith('{') || value.startsWith('[') ? JSON.parse(value) : value
+	// 	} catch (_e) {
+	// 		//@ts-ignore 'newObj' does not have a type yet
+	// 		newObj[key] = value
+	// 	}
+	// }
 
-	return newObj
+	return JSON.parse(JSON.stringify(headers))
 }

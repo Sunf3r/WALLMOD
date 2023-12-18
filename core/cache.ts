@@ -16,10 +16,10 @@ export async function cacheCmds() {
 			headers: {
 				setup: '',
 			},
-		})
+		}) // send 'setup' header to all cmds
 
 		const cmd = parseHeaders(res.headers) as Cmd
 
-		cmds.add(cmd.name, cmd)
+		cmds.add(cmd.name, cmd) // add cmd data to cache
 	}
 }

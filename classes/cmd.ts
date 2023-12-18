@@ -52,7 +52,7 @@ export default class Cmd {
 	}
 
 	public handler(req: Request) {
-		if (req.headers.has('setup')) return this.setup()
+		if (req.headers.has('setup')) return this.setup() // Cmd config
 
 		const ctx = parseHeaders(req.headers) as CmdCtx
 
