@@ -81,7 +81,9 @@ function findKey(obj: any, key: str): any {
 		}
 
 		// If it's a method, check if it is the searched value
-		if (typeof obj[property] === 'function' && property === key) return obj[property]
+		if (typeof obj[property] === 'function' && property === key) {
+			return obj[property]
+		}
 	}
 
 	return

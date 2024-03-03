@@ -8,13 +8,13 @@
 	},
 	"imports": { // DENO Import map
 		// Folders map
-		"util/": "./util/",
-		"core/": "./core/",
-		"types/": "./types/",
-		"cmds/": "./commands/",
-		"events/": "./events/",
-		"classes/": "./classes/",
-		"settings/": "./settings/",
+		"settings/": "./",
+		"util/": "../util/",
+		"core/": "../core/",
+		"types/": "../types/",
+		"cmds/": "../commands/",
+		"events/": "../events/",
+		"classes/": "../classes/",
 
 		// Files map
 		"ports": "./ports.ts",

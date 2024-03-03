@@ -1,8 +1,9 @@
 {
 	// DENO settings
-	"deno.enable": false,
+	"deno.enable": true,
 	"deno.lint": true,
 	"deno.unstable": true,
+	"deno.config": "./settings/deno.jsonc",
 
 	// Editor settings
 	"editor.formatOnSave": true,

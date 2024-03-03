@@ -4,7 +4,8 @@
 		"postinstall": "rm package-lock.json & npm run prisma:gen",
 		"start": "rm temp/* & node --no-warnings --expose-gc main.js",
 		"prisma:gen": "npx prisma generate",
-		"prisma:push": "npx prisma db push"
+		"prisma:push": "npx prisma db push",
+		"fmt": "deno fmt --config=settings/deno.jsonc ./"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.7.0",
