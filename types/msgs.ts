@@ -12,6 +12,7 @@ const visualMsgs = {
 	'imageMessage': 'image',
 	'stickerMessage': 'sticker',
 	'videoMessage': 'video',
+	'ptvMessage': 'video',
 }
 
 const mediaMsgs = {
@@ -36,8 +37,19 @@ const coolMsgTypes = {
 
 const msgTypes = { // all msg types
 	...coolMsgTypes,
-	'protocolMessage': 'protocol',
 	'reactionMessage': 'reaction',
+	'pinInChatMessage': 'pin',
+	'protocolMessage': 'protocol', // Delete msgs
+
+	// API Bots
+	'buttonsMessage': 'button',
+	'templateMessage': 'template',
+	'buttonsResponseMessage': 'buttonReply',
+	'templateButtonReplyMessage': 'buttonReply',
+
+	// Polls
+	'pollCreationMessageV3': 'poll',
+	'pollUpdateMessage': 'pollUpdate',
 }
 
 // Array containing all visual msg refined types

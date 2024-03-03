@@ -1,11 +1,12 @@
 # Settings
 *.env
 **/auth*
+test/
 
 # Builds
 node_modules/
 
-# Logs / Lokefiles
+# Logs / Lock
 logs
 temp
 *lock*
