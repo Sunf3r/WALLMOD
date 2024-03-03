@@ -3,9 +3,9 @@
 	"scripts": {
 		"postinstall": "rm package-lock.json & npm run prisma:gen",
 		"start": "rm temp/* & node --no-warnings --expose-gc main.js",
-		"prisma:gen": "npx prisma generate",
-		"prisma:push": "npx prisma db push",
-		"fmt": "deno fmt --config=settings/deno.jsonc ./"
+		"prisma:gen": "npx prisma generate --schema=.vscode/schema.prisma",
+		"prisma:push": "npx prisma db push --schema=.vscode/schema.prisma",
+		"fmt": "deno fmt --config=.vscode/deno.jsonc ./"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.7.0",

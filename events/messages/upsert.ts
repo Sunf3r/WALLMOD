@@ -1,4 +1,4 @@
-import settings from 'settings/settings.json' assert { type: 'json' }
+import settings from 'settings/settings.json' with { type: 'json' }
 import { react, send, updatePresence } from 'util/interaction.ts'
 import { cacheCmds, cmds } from 'core/cache.ts'
 import { coolMsgValues } from 'types/msgs.ts'

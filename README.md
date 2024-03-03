@@ -28,8 +28,7 @@
 3. Each command and each event runs in a separate process (DENO).
 4. They communicate with each other via http requests.
 5. No thread retains cache. When necessary, it will ask DBCacher.
-6. DBCacher stores the entire application cache and interacts with the database (PostgreSQL /
-   Prisma).
+6. DBCacher stores the entire application cache and interacts with the database (PostgreSQL/Prisma).
 7. This way, each structure can be completely restarted without affecting the others.
 
 # 🤔 How to install?
@@ -81,15 +80,15 @@ git clone https://github.com/Sunf3r/WALL-E # Clone this repo
 > 💡 » _Open the folder in terminal_
 
 ```bash
+npm install -g pm2 prisma
 npm install # Download and build dependencies
-npm install -g pm2 prisma # production packages
 ```
 
 ### `4 -` 🌿 Preparing the environment:
 
-You can configure the bot however you want in the following files:
+All bot configuration files are located in `.vscode` folder:
 
-- `bot.json` (`settings/bot.json`)
+- `bot.json` (`.vscode/bot.json`)
 
 ```json
 {
@@ -99,29 +98,6 @@ You can configure the bot however you want in the following files:
 ```
 
 > 💡 » _Rename "`bot.example.json`" to "`bot.json`"_
-
-- `.env` (`.env.example`)
-
-```env
-DATABASE_URL="postgresql://role:password@host:port/db"
-```
-
-> 💡 » _Rename "`.env.example`" to "`.env`"_
-
-- `db.json` (`settings/db.json`)
-
-```json
-{
-	"userDefaults": {
-		"prefix": ".",
-		"language": "pt",
-		"cacheLimit": 500
-	},
-	"groupDefaults": {
-		"msgsCacheLimit": 200
-	}
-}
-```
 
 ### `5 -` 🚀 Starting:
 
@@ -134,7 +110,7 @@ npm run prisma:push
 And finally:
 
 ```bash
-pm2 start settings/ecosystem.config.cjs --attach
+pm2 start .vscode/ecosystem.config.cjs --attach
 ```
 
 ---

@@ -3,7 +3,7 @@
 	"deno.enable": true,
 	"deno.lint": true,
 	"deno.unstable": true,
-	"deno.config": "./settings/deno.jsonc",
+	"deno.config": ".vscode/deno.jsonc",
 
 	// Editor settings
 	"editor.formatOnSave": true,

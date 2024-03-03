@@ -1,5 +1,5 @@
 import { GroupMetadata, type GroupParticipant, type proto } from 'baileys'
-import db from 'settings/db.json' assert { type: 'json' }
+import db from 'settings/db.json' with { type: 'json' }
 import Collection from 'util/collection.ts'
 import type { Msg } from 'types/types.d.ts'
 import prisma from 'util/prisma.ts'

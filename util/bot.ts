@@ -1,4 +1,4 @@
-import settings from 'settings/settings.json' assert { type: 'json' }
+import settings from 'settings/settings.json' with { type: 'json' }
 import { CmdCtx, Msg, MsgTypes } from 'types/types.d.ts'
 import { isMedia, msgTypes } from 'types/msgs.ts'
 import { getGroup } from 'util/interaction.ts'

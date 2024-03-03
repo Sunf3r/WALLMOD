@@ -1,4 +1,4 @@
-import db from 'settings/db.json' assert { type: 'json' }
+import db from 'settings/db.json' with { type: 'json' }
 import { parseHeaders } from 'util/request.ts'
 import Collection from 'util/collection.ts'
 import Group from 'classes/group.ts'

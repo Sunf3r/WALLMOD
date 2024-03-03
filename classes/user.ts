@@ -1,4 +1,4 @@
-import db from 'settings/db.json' assert { type: 'json' }
+import db from 'settings/db.json' with { type: 'json' }
 import prisma from 'util/prisma.ts'
 
 export default class User {
